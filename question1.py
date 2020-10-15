@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn import svm
 from sklearn.metrics import confusion_matrix
 
-pkl_file = 'q1_dataset.pkl'
+pkl_file = 'hw3-data/hw3-data/q1_dataset.pkl'
 data = pickle.load(open(pkl_file, 'rb'))
 data = np.array(data)
 X = data[:, :2]
