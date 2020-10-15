@@ -19,6 +19,8 @@ print("\nC=1: ")
 clf = svm.SVC()
 clf.fit(X,Y)
 print(clf.fit(X,Y).score(X,Y))
+print(clf.fit(X,Y).dual_coef_)
+print(clf.fit(X,Y).intercept_)
 
 difference_list_c1 = np.subtract(clf.predict(X), Y)
 
@@ -31,10 +33,15 @@ for i in range(len(difference_list_c1)):
             isError = True
         print("    -" + str(X[i]))
 
+
+
 print("\n\nC=3: ")
 clf3 = svm.SVC(C=3)
 clf3.fit(X,Y)
 print(clf3.fit(X,Y).score(X,Y))
+print(clf3.fit(X,Y).dual_coef_)
+print(clf3.fit(X,Y).intercept_)
+
 
 difference_list_c3 = np.subtract(clf3.predict(X), Y)
 
