@@ -39,7 +39,7 @@ for name, penalty in (('case1',1),('case2',3)):
     print(clf.support_vectors_)
     
     # get the separating hyperplane
-    w = clf.dual_coef_[0]
+    w = clf.coef_[0]
     a = -w[0] / w[1]
     xx = np.linspace(-5, 5)
     yy = a * xx - (clf.intercept_[0]) / w[1]
@@ -65,10 +65,10 @@ for name, penalty in (('case1',1),('case2',3)):
                 edgecolors='k')
 
     plt.axis('tight')
-    x_min = -4.8
-    x_max = 4.2
-    y_min = -6
-    y_max = 6
+    x_min = 0
+    x_max = 12
+    y_min = 0
+    y_max = 12
 
     XX, YY = np.mgrid[x_min:x_max:200j, y_min:y_max:200j]
     Z = clf.predict(np.c_[XX.ravel(), YY.ravel()])
