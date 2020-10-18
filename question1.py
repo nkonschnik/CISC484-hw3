@@ -20,28 +20,27 @@ for name, penalty in (('case1',1),('case2',3)):
     
     print("\nC=" + str(penalty) + ": ")
     clf = svm.SVC(kernel = 'linear', C=penalty)
-    clf.fit(X,Y)
-    print(clf.fit(X,Y).score(X,Y))
-    #print(clf.fit(X,Y).dual_coef_)
-    #print(clf.fit(X,Y).intercept_)
-
-    difference_list_c1 = np.subtract(clf.predict(X), Y)
+    clfFit  = clf.fit(X,Y)
+    print("    Accuracy of training: " + str(clfFit.score(X,Y)))
+    
+    difference_list = np.subtract(clf.predict(X), Y)
 
     isError = False
 
-    for i in range(len(difference_list_c1)):
-        if difference_list_c1[i] != 0:
+    for i in range(len(difference_list)):
+        if difference_list[i] != 0:
             if not(isError):
-                print("\nError instances:")
+                print("\n    Error instances:")
                 isError = True
-            print("    -" + str(X[i]))
+            print("        -" + str(X[i]))
 
-    print(clf.support_vectors_)
+    if(isError == False):
+        print("\n    There are no error instances")
     
     # get the separating hyperplane
     w = clf.coef_[0]
     a = -w[0] / w[1]
-    xx = np.linspace(-5, 5)
+    xx = np.linspace(-50, 50)
     yy = a * xx - (clf.intercept_[0]) / w[1]
 
     # plot the parallels to the separating hyperplane that pass through the
@@ -85,23 +84,3 @@ for name, penalty in (('case1',1),('case2',3)):
     plt.yticks(())
     fignum = fignum + 1
 plt.savefig("q1_plot")
-"""
-print("\n\nC=3: ")
-clf3 = svm.SVC(C=3)
-clf3.fit(X,Y)
-print(clf3.fit(X,Y).score(X,Y))
-print(clf3.fit(X,Y).dual_coef_)
-print(clf3.fit(X,Y).intercept_)
-
-
-difference_list_c3 = np.subtract(clf3.predict(X), Y)
-
-isError = False
-
-for i in range(len(difference_list_c3)):
-    if difference_list_c3[i] != 0:
-        if not(isError):
-            print("\nError instances:")
-            isError = True
-        print("    -" + str(X[i]))
-"""
