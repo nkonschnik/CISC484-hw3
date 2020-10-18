@@ -22,7 +22,7 @@ for name, penalty in (('case1',1),('case2',3)):
     clf = svm.SVC(kernel = 'linear', C=penalty)
     clfFit  = clf.fit(X,Y)
     print("    Accuracy of training: " + str(clfFit.score(X,Y)))
-    
+
     difference_list = np.subtract(clf.predict(X), Y)
 
     isError = False
@@ -40,14 +40,18 @@ for name, penalty in (('case1',1),('case2',3)):
     # get the separating hyperplane
     w = clf.coef_[0]
     a = -w[0] / w[1]
+    print("\n    The slope of the line, w : " + str(a))
     xx = np.linspace(-50, 50)
-    yy = a * xx - (clf.intercept_[0]) / w[1]
+    intercept = clf.intercept_[0] / w[1]
+    yy = a * xx - intercept
+    print("\n    The intercept value of the line, b : " + str(intercept))
 
     # plot the parallels to the separating hyperplane that pass through the
     # support vectors (margin away from hyperplane in direction
     # perpendicular to hyperplane). This is sqrt(1+a^2) away vertically in
     # 2-d.
     margin = 1 / np.sqrt(np.sum(clf.coef_ ** 2))
+    print("\n    The margin distance value of the line : " + str(margin))
     yy_down = yy - np.sqrt(1 + a ** 2) * margin
     yy_up = yy + np.sqrt(1 + a ** 2) * margin
 
@@ -83,4 +87,4 @@ for name, penalty in (('case1',1),('case2',3)):
     plt.xticks(())
     plt.yticks(())
     fignum = fignum + 1
-plt.savefig("q1_plot")
+    plt.savefig("q" + str(name[-1]) + "_plot")
