@@ -36,22 +36,23 @@ for name, penalty in (('case1',1),('case2',3)):
 
     if(isError == False):
         print("\n    There are no error instances")
-    
+    print("\n    The line properties :")
     # get the separating hyperplane
     w = clf.coef_[0]
     a = -w[0] / w[1]
-    print("\n    The slope of the line, w : " + str(a))
+    print("\n        - The weight vector is : " + str(w))
+    print("\n        - The slope of the line, w : " + str(a))
     xx = np.linspace(-50, 50)
     intercept = clf.intercept_[0] / w[1]
     yy = a * xx - intercept
-    print("\n    The intercept value of the line, b : " + str(intercept))
+    print("\n        - The intercept value of the line, b : " + str(intercept))
 
     # plot the parallels to the separating hyperplane that pass through the
     # support vectors (margin away from hyperplane in direction
     # perpendicular to hyperplane). This is sqrt(1+a^2) away vertically in
     # 2-d.
     margin = 1 / np.sqrt(np.sum(clf.coef_ ** 2))
-    print("\n    The margin distance value of the line : " + str(margin))
+    print("\n        - The margin distance value of the line : " + str(margin))
     yy_down = yy - np.sqrt(1 + a ** 2) * margin
     yy_up = yy + np.sqrt(1 + a ** 2) * margin
 
