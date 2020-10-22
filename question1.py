@@ -43,8 +43,8 @@ for name, penalty in (('case1',1),('case2',3)):
     print("\n        - The weight vector is : " + str(w))
     print("\n        - The slope of the line, w : " + str(a))
     xx = np.linspace(-50, 50)
-    intercept = clf.intercept_[0] / w[1]
-    yy = a * xx - intercept
+    intercept = (-1)*clf.intercept_[0] / w[1]
+    yy = a * xx + intercept
     print("\n        - The intercept value of the line, b : " + str(intercept))
 
     # plot the parallels to the separating hyperplane that pass through the
@@ -88,4 +88,4 @@ for name, penalty in (('case1',1),('case2',3)):
     plt.xticks(())
     plt.yticks(())
     fignum = fignum + 1
-    plt.savefig("q" + str(name[-1]) + "_plot")
+    plt.savefig("q1_" + str(name[-1]) + "_plot")
